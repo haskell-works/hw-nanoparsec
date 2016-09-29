@@ -56,4 +56,6 @@ option  p q = Parser $ \s ->
     res    -> res
 
 char :: Char -> Parser Char
-char = return
+char c = do
+  d <- item
+  if c == d then return c else failure
