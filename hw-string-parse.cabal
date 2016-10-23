@@ -1,5 +1,5 @@
 name:                   hw-string-parse
-version:                0.0.0.2
+version:                0.0.0.3
 synopsis:               String parser
 description:            Please see README.md
 homepage:               http://github.com/haskell-works/hw-string-parse#readme
