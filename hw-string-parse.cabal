@@ -1,9 +1,9 @@
 name:                   hw-string-parse
 version:                0.0.0.2
-synopsis:               Conduits for tokenizing streams.
+synopsis:               String parser
 description:            Please see README.md
 homepage:               http://github.com/haskell-works/hw-string-parse#readme
-license:                MIT
+license:                BSD3
 license-file:           LICENSE
 author:                 John Ky
 maintainer:             newhoggy@gmail.com
