@@ -35,4 +35,6 @@ tests:
     - hw-string-parse
     - QuickCheck
     - vector
+    verbatim:
+      build-tool-depends: hspec-discover:hspec-discover
 stability: Experimental
