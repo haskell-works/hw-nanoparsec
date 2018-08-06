@@ -12,8 +12,10 @@ homepage: http://github.com/haskell-works/hw-string-parse#readme
 extra-source-files:
 - README.md
 ghc-options: -Wall
+
 dependencies:
 - base >=4 && <5
+
 library:
   source-dirs: src
   ghc-options:
@@ -21,6 +23,7 @@ library:
   - -msse4.2
   exposed-modules:
   - HaskellWorks.Data.String.Parse
+
 tests:
   hw-string-parse-test:
     main: Spec.hs
@@ -37,4 +40,5 @@ tests:
     - vector
     verbatim:
       build-tool-depends: hspec-discover:hspec-discover
+
 stability: Experimental
