@@ -1,0 +1,51 @@
+name:           hw-string-parse
+version:        0.0.0.4
+synopsis:       String parser
+description:    Please see README.md
+category:       Data, Bit
+stability:      Experimental
+homepage:       http://github.com/haskell-works/hw-string-parse#readme
+bug-reports:    https://github.com/haskell-works/hw-string-parse/issues
+author:         John Ky
+maintainer:     newhoggy@gmail.com
+copyright:      2016 John Ky
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+cabal-version:  >= 1.10
+extra-source-files:
+    README.md
+
+source-repository head
+  type: git
+  location: https://github.com/haskell-works/hw-string-parse
+
+library
+  exposed-modules:
+      HaskellWorks.Data.String.Parse
+  other-modules:
+      Paths_hw_string_parse
+  hs-source-dirs:
+      src
+  ghc-options: -Wall -O2 -msse4.2
+  build-depends:
+      base >=4 && <5
+  default-language: Haskell2010
+
+test-suite hw-string-parse-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_hw_string_parse
+  hs-source-dirs:
+      test
+  ghc-options: -Wall -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      QuickCheck
+    , base >=4 && <5
+    , bytestring
+    , hspec
+    , hw-string-parse
+    , vector
+  default-language: Haskell2010
+  build-tool-depends: hspec-discover:hspec-discover
