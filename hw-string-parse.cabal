@@ -1,52 +1,56 @@
-name:           hw-string-parse
-version:        0.0.0.4
-synopsis:       String parser
-description:    Please see README.md
-category:       Data, Bit
-stability:      Experimental
-homepage:       http://github.com/haskell-works/hw-string-parse#readme
-bug-reports:    https://github.com/haskell-works/hw-string-parse/issues
-author:         John Ky
-maintainer:     newhoggy@gmail.com
-copyright:      2016 John Ky
-license:        BSD3
-license-file:   LICENSE
-tested-with:    GHC == 8.6.5, GHC == 8.4.4, GHC == 8.2.2
-build-type:     Simple
-cabal-version:  >= 1.10
+cabal-version:      2.2
+
+name:               hw-string-parse
+version:            0.0.0.4
+synopsis:           String parser
+description:        Please see README.md
+category:           Data, Bit
+stability:          Experimental
+homepage:           http://github.com/haskell-works/hw-string-parse#readme
+bug-reports:        https://github.com/haskell-works/hw-string-parse/issues
+author:             John Ky
+maintainer:         newhoggy@gmail.com
+copyright:          2016-2019 John Ky
+license:            BSD-3-Clause
+license-file:       LICENSE
+tested-with:        GHC == 8.6.5, GHC == 8.4.4, GHC == 8.2.2
+build-type:         Simple
 extra-source-files:
-    README.md
+  README.md
 
 source-repository head
   type: git
   location: https://github.com/haskell-works/hw-string-parse
 
+common base                 { build-depends: base                 >= 4          && < 5      }
+
+common QuickCheck           { build-depends: QuickCheck                                     }
+common bytestring           { build-depends: bytestring                                     }
+common hspec                { build-depends: hspec                                          }
+common vector               { build-depends: vector                                         }
+
+common config
+  default-language:     Haskell2010
+
 library
-  exposed-modules:
-      HaskellWorks.Data.String.Parse
-  other-modules:
-      Paths_hw_string_parse
-  hs-source-dirs:
-      src
-  ghc-options: -Wall -O2 -msse4.2
-  build-depends:
-      base >=4 && <5
-  default-language: Haskell2010
+  import:   base, config
+  exposed-modules:      HaskellWorks.Data.String.Parse
+  other-modules:        Paths_hw_string_parse
+  autogen-modules:      Paths_hw_string_parse
+  hs-source-dirs:       src
+  ghc-options:          -Wall -O2 -msse4.2
 
 test-suite hw-string-parse-test
-  type: exitcode-stdio-1.0
-  main-is: Spec.hs
-  other-modules:
-      Paths_hw_string_parse
-  hs-source-dirs:
-      test
-  ghc-options: -Wall -threaded -rtsopts -with-rtsopts=-N
-  build-depends:
-      QuickCheck
-    , base >=4 && <5
-    , bytestring
-    , hspec
-    , hw-string-parse
-    , vector
-  default-language: Haskell2010
-  build-tool-depends: hspec-discover:hspec-discover
+  import:   base, config
+          , QuickCheck
+          , bytestring
+          , hspec
+          , vector
+  type:                 exitcode-stdio-1.0
+  main-is:              Spec.hs
+  other-modules:        Paths_hw_string_parse
+  autogen-modules:      Paths_hw_string_parse
+  hs-source-dirs:       test
+  ghc-options:          -Wall -threaded -rtsopts -with-rtsopts=-N
+  build-tool-depends:   hspec-discover:hspec-discover
+  build-depends:        hw-string-parse
