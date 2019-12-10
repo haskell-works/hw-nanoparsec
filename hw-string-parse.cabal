@@ -1,22 +1,21 @@
-cabal-version:      2.2
+cabal-version: 2.2
 
-name:               hw-string-parse
-version:            0.0.0.4
-synopsis:           String parser
-description:        Please see README.md
-category:           Data, Bit
-stability:          Experimental
-homepage:           http://github.com/haskell-works/hw-string-parse#readme
-bug-reports:        https://github.com/haskell-works/hw-string-parse/issues
-author:             John Ky
-maintainer:         newhoggy@gmail.com
-copyright:          2016-2019 John Ky
-license:            BSD-3-Clause
-license-file:       LICENSE
-tested-with:        GHC == 8.6.5, GHC == 8.4.4, GHC == 8.2.2
-build-type:         Simple
-extra-source-files:
-  README.md
+name:                   hw-string-parse
+version:                0.0.0.4
+synopsis:               String parser
+description:            Please see README.md
+category:               Data, Bit
+stability:              Experimental
+homepage:               http://github.com/haskell-works/hw-string-parse#readme
+bug-reports:            https://github.com/haskell-works/hw-string-parse/issues
+author:                 John Ky
+maintainer:             newhoggy@gmail.com
+copyright:              2016-2019 John Ky
+license:                BSD-3-Clause
+license-file:           LICENSE
+tested-with:            GHC == 8.6.5, GHC == 8.4.4, GHC == 8.2.2
+build-type:             Simple
+extra-source-files:     README.md
 
 source-repository head
   type: git
@@ -24,6 +23,8 @@ source-repository head
 
 common base                 { build-depends: base                 >= 4          && < 5      }
 
+common doctest              { build-depends: doctest              >= 0.16.2     && < 0.17   }
+common doctest-discover     { build-depends: doctest-discover     >= 0.2        && < 0.3    }
 common QuickCheck           { build-depends: QuickCheck                                     }
 common bytestring           { build-depends: bytestring                                     }
 common hspec                { build-depends: hspec                                          }
@@ -31,6 +32,9 @@ common vector               { build-depends: vector                             
 
 common config
   default-language:     Haskell2010
+
+common hw-string-parse
+  build-depends:        hw-string-parse
 
 library
   import:   base, config
@@ -54,3 +58,14 @@ test-suite hw-string-parse-test
   ghc-options:          -Wall -threaded -rtsopts -with-rtsopts=-N
   build-tool-depends:   hspec-discover:hspec-discover
   build-depends:        hw-string-parse
+
+test-suite doctest
+  import:               base, config
+                      , doctest
+                      , doctest-discover
+                      , hw-string-parse
+  type:                 exitcode-stdio-1.0
+  ghc-options:          -threaded
+  main-is:              DoctestDriver.hs
+  HS-Source-Dirs:       doctest
+  build-tool-depends:   doctest-discover:doctest-discover
