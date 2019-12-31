@@ -37,7 +37,7 @@ common hw-string-parse
   build-depends:        hw-string-parse
 
 library
-  import:   base, config
+  import:               base, config
   exposed-modules:      HaskellWorks.Data.String.Parse
   other-modules:        Paths_hw_string_parse
   autogen-modules:      Paths_hw_string_parse
@@ -45,15 +45,13 @@ library
   ghc-options:          -Wall -O2 -msse4.2
 
 test-suite hw-string-parse-test
-  import:   base, config
-          , QuickCheck
-          , bytestring
-          , hspec
-          , vector
+  import:               base, config
+                      , QuickCheck
+                      , bytestring
+                      , hspec
+                      , vector
   type:                 exitcode-stdio-1.0
   main-is:              Spec.hs
-  other-modules:        Paths_hw_string_parse
-  autogen-modules:      Paths_hw_string_parse
   hs-source-dirs:       test
   ghc-options:          -Wall -threaded -rtsopts -with-rtsopts=-N
   build-tool-depends:   hspec-discover:hspec-discover
