@@ -28,11 +28,10 @@ instance Functor Parser where
   fmap f (Parser cs) = Parser (\s -> [(f a, b) | (a, b) <- cs s])
 
 instance Applicative Parser where
-  pure = return
+  pure = unit
   (Parser cs1) <*> (Parser cs2) = Parser (\s -> [(f a, s2) | (f, s1) <- cs1 s, (a, s2) <- cs2 s1])
 
 instance Monad Parser where
-  return = unit
   (>>=)  = bind
 
 instance MonadPlus Parser where
